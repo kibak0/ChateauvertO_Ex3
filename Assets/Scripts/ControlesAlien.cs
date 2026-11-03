@@ -21,12 +21,14 @@ public class ControlesEnnemi : MonoBehaviour
 
     Animator animator;
     AudioSource audioSource;
+    NavMeshAgent agent;
     [SerializeField] AudioClip sonMort;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
 
         pointsVie = 100f;
         positionInitiale = transform.position;
@@ -45,6 +47,19 @@ public class ControlesEnnemi : MonoBehaviour
 
     void GererDeplacement()
     {
+        Vector3 direction = joueur.transform.position - transform.position;
+        float distance = direction.magnitude;
+
+        if (distance <= distancePoursuite)
+        {
+            agent.SetDestination(joueur.transform.position);
+        }
+        else
+        {
+            agent.SetDestination(positionInitiale);
+        }
+
+        animator.SetFloat("vitesse", agent.velocity.magnitude);
     }
 
     void RetournerPositionInitiale()
