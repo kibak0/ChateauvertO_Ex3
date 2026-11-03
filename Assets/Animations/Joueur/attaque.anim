@@ -12,6 +12,7 @@ AnimationClip:
   m_Compressed: 0
   m_UseHighQualityCurve: 0
   m_RotationCurves: []
+  m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
   - curve:
